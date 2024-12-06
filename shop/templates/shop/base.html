@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+   {%load static%}
+<head>
+    <title>{% block title %}Online Cloth Shop{% endblock %}</title>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    background-image: url('{% static "images/th1.jpeg" %}');
+    background-size: cover;
+}
+
+nav {
+    background-color: #333;
+    color: #846363;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #cba0a0;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+    color: #333;
+    background-color: #ddd;
+}
+
+p {
+    text-align: center;
+    margin-top: 1rem;
+    color: #666;
+}
+
+/* Form Styles */
+form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #555;
+}
+
+/* Product List Styles */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    width: 300px;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+.product h2 {
+    color: #333;
+}
+
+.product p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+/* Cart Styles */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+}
+
+li p {
+    margin: 0.5rem 0;
+}
+/* Product List Styles */
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    width: 300px;
+}
+
+.product img {
+    max-width: 250px;
+    height: 250px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+.product h2 {
+    color: #333;
+}
+
+.product p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.product form {
+    margin-top: 1rem;
+}
+
+.product button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background-color: #555;
+}
+button {
+    background-color: #f44336; /* Red color */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+button:hover {
+    background-color: #c62828; /* Darker red */
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'collection' %}">Collection</a></li>
+            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+            <li><a href="{% url 'cart' %}">Cart</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'sign_out' %}">Sign Out</a></li>
+            {% else %}
+                <li><a href="{% url 'sign_in' %}">Sign In</a></li>
+                <li><a href="{% url 'sign_up' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+</body>
+</html>
